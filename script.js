@@ -32,7 +32,7 @@ const player = {
   x: canvas.width / 2,
   y: 100,
   size: 22,
-  speed: 6
+  speed: 10
 };
 
 // Input
