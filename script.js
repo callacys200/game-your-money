@@ -50,16 +50,54 @@ let mapDisplayHeight = 0;
 
 // Buildings (percent of ORIGINAL map)
 const buildings = [
-  { name: "Budgeting Basics", img: "house", x: 0.042, y: 0.025, w: 0.23, h: 0.1},
-  { name: "Saving & Investing", img: "office", x: 0.69, y: 0.21, w: 0.23, h: 0.1},
-  { name: "Banking Basics", img: "bank", x: 0.01, y: 0.401, w: 0.3, h: 0.09},
-  { name: "Taxes & Income", img: "atm", x: 0.65, y: 0.6, w: 0.37, h: 0.08}
+  { name: "Budgeting Basics", img: "house", x: 0.042, y: 0.025, w: 0.23, h: 0.1, link: "house.html"},
+  { name: "Saving & Investing", img: "office", x: 0.69, y: 0.21, w: 0.23, h: 0.1, link: "office.html"},
+  { name: "Banking Basics", img: "bank", x: 0.01, y: 0.401, w: 0.3, h: 0.09, link: "bank.html"},
+  { name: "Taxes & Income", img: "atm", x: 0.65, y: 0.6, w: 0.37, h: 0.08, link: "atm.html"}
 ];
+
+let nearbyBuilding = null;
+
+function checkBuildingProximity() {
+  nearbyBuilding = null;
+
+  buildings.forEach(b => {
+    const bx = b.x * canvas.width;
+    const by = b.y * mapDisplayHeight;
+    const bw = b.w * canvas.width;
+    const bh = b.h * mapDisplayHeight;
+
+    const px = player.x;
+    const py = player.y;
+
+    const buffer = 20;
+
+    if (
+      px > bx - buffer &&
+      px < bx + bw + buffer &&
+      py > by - buffer &&
+      py < by + bh + buffer
+    ) {
+      nearbyBuilding = b;
+    }
+  });
+}
+
+
+document.addEventListener("keydown", e => {
+  keys[e.key.toLowerCase()] = true;
+
+  if (e.key.toLowerCase() === "e" && nearbyBuilding) {
+    window.location.href = nearbyBuilding.link;
+  }
+});
 
 const signs = [
   { img: "disney", x: 0.69, y: 0.735, w: 0.28, h: 0.07 },
   { img: "wallstreet", x: 0.125, y: 0.86, w: 0.32, h: 0.07 }
 ];
+
+const DISNEY_CHALLENGE_LINK = "disney.html";
 
 // Camera (ONLY Y)
 let cameraY = 0;
@@ -73,6 +111,17 @@ function movePlayer() {
 
   // Clamp player vertically to map
   player.y = Math.max(0, Math.min(player.y, mapDisplayHeight - player.size));
+
+  //LEFT
+  player.x = Math.max(player.size / 2, player.x);
+  //TOP
+  player.y = Math.max(0, player.y);
+  //BOTTOM
+  player.y = Math.min(mapDisplayHeight - player.size, player.y);
+  // RIGHT - Disney Challenge
+  if (player.x > canvas.width - player.size / 2) {
+    window.location.href = DISNEY_CHALLENGE_LINK;
+  }
 }
 
 // Update camera (vertical only)
@@ -121,6 +170,19 @@ function drawPlayer() {
   );
 }
 
+function drawEnterPrompt() {
+  if (!nearbyBuilding) return;
+
+  ctx.fillStyle = "white";
+  ctx.font = "24px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText(
+    `Press E to enter ${nearbyBuilding.name}`,
+    player.x,
+    player.y - cameraY - 25
+  );
+}
+
 // Loop
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -128,9 +190,12 @@ function gameLoop() {
   updateCamera();
   drawMap();
   drawObjects();
+  checkBuildingProximity();
   drawPlayer();
+  drawEnterPrompt();
   requestAnimationFrame(gameLoop);
 }
+
 
 // Start after map loads
 mapImg.onload = () => {
