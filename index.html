@@ -1,41 +1,88 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
- <title>Game your Money</title>
- <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module Levels</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-
-<script>
-let currentBuilding = null;
-document.querySelectorAll('.building').forEach(building => {
-    building.addEventListener('mouseenter', () => {
-        currentBuilding = building;
-    });
-
-    building.addEventListener('mouseleave', () => {
-        currentBuilding = null;
-    });
-
-    // mobile / fallback click
-    building.addEventListener('click', () => {
-        window.location.href = building.dataset.link;
-    });
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'e' && currentBuilding) {
-        window.location.href = currentBuilding.dataset.link;
-    }
-});
-</script>
-
 <body>
- <canvas id="gameCanvas"></canvas>
- <script src="script.js"></script>
+  <div class="bgGlow"></div>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="heroLeft">
+        <div class="titleRow">
+          <div class="logo">LVL</div>
+          <div>
+            <h1>Module Levels</h1>
+            <p>Score <b>3/5</b> to unlock the next module. Progress saves automatically.</p>
+          </div>
+        </div>
+
+        <div class="chips">
+          <div class="chip">🔓 Save Progress</div>
+          <div class="chip">🎯 Pass Mark: 3/5</div>
+          <div class="chip">⚡ 4 Modules</div>
+          <div id="healthChip" class="chip">🧠 AI: checking...</div>
+        </div>
+      </div>
+
+      <div class="heroRight">
+        <div class="progressCard">
+          <div class="progressTop">
+            <div class="progressTitle">Overall Progress</div>
+            <div id="progressText" class="progressText">0/4 Unlocked</div>
+          </div>
+          <div class="bar">
+            <div id="barFill" class="barFill"></div>
+          </div>
+          <button id="resetBtn" class="btnGhost">Reset Progress</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div id="modules" class="modules"></div>
+
+      <div class="panel">
+        <div class="panelTop">
+          <div class="panelTitle">
+            <div id="panelModuleName" class="panelModuleName">Module</div>
+            <div id="panelSub" class="panelSub">Pick a module to begin.</div>
+          </div>
+
+          <div class="tabs">
+            <button id="infoTab" class="tab active">Info</button>
+            <button id="quizTab" class="tab">Quiz</button>
+            <button id="aiTab" class="tab">Ask AI</button>
+          </div>
+        </div>
+
+        <div class="views">
+          <div id="infoView" class="view active">
+            <div class="infoTop">
+              <button id="shuffleInfoBtn" class="btnPrimary">Shuffle Topics</button>
+            </div>
+            <div id="infoCards" class="infoCards"></div>
+          </div>
+
+          <div id="quizView" class="view"></div>
+
+          <div id="aiView" class="view">
+            <div class="aiBox">
+              <input id="aiInput" type="text" placeholder="Ask anything about this module..." />
+              <button id="aiAskBtn" class="btnPrimary">Ask</button>
+            </div>
+
+            <div id="aiAnswer" class="aiAnswer">Ask something and the answer will show here.</div>
+            <div class="tinyHint">(API key stays on the server.)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="./app.js"></script>
 </body>
 </html>
-<div class="building" id="house" data-link="house.html">🏠</div>
-<div class="building" id="office" data-link="office.html">🏢</div>
-<div class="building" id="bank" data-link="bank.html">🏦</div>
-<div class="building" id="atm" data-link="atm.html">💳</div>
-

@@ -1,0 +1,476 @@
+:root{
+  --bg:#070a16;
+  --card: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.14);
+  --border-strong: rgba(255,255,255,0.25);
+  --text:#f3f5ff;
+  --muted: rgba(243,245,255,0.75);
+  --accent:#6c8cff;
+  --accent2:#9a6bff;
+  --good:#31d07c;
+  --bad:#ff5470;
+  --shadow: 0 30px 80px rgba(0,0,0,0.55);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background:
+    radial-gradient(900px 500px at 15% 10%, rgba(108,140,255,0.20), transparent 60%),
+    radial-gradient(800px 500px at 85% 15%, rgba(154,107,255,0.18), transparent 60%),
+    linear-gradient(180deg, #050714, #0a0e2a);
+  color: var(--text);
+}
+
+.wrap{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 36px 28px 70px;
+  display:grid;
+  gap: 26px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  display:grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 26px;
+}
+
+.heroLeft,
+.heroRight{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.titleRow{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.logo{
+  width:64px;
+  height:64px;
+  border-radius:22px;
+  font-size:22px;
+  font-weight:900;
+  display:grid;
+  place-items:center;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+
+.heroLeft h1{
+  margin:0;
+  font-size:36px;
+  letter-spacing:-0.5px;
+}
+
+.heroLeft p{
+  margin-top:6px;
+  color: var(--muted);
+  font-size:15px;
+}
+
+.chips{
+  margin-top:22px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.chip{
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,0.25);
+  font-size:13px;
+  color: var(--muted);
+}
+
+/* ================= PROGRESS ================= */
+
+.progressTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.progressTitle{
+  font-size:18px;
+  font-weight:700;
+}
+
+.progressText{
+  color: var(--muted);
+}
+
+.bar{
+  height:14px;
+  margin:16px 0 18px;
+  border-radius:999px;
+  background: rgba(0,0,0,0.35);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+
+.barFill{
+  height:100%;
+  width:0%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  transition: width .35s ease;
+}
+
+.btnGhost{
+  width:100%;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  cursor:pointer;
+}
+
+/* ================= MODULES ================= */
+
+.modules{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:22px;
+}
+
+.moduleBtn{
+  position:relative;
+  padding:26px;
+  min-height:190px;
+  border-radius:30px;
+  border:1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.35));
+  box-shadow: var(--shadow);
+  cursor:pointer;
+  transition: transform .25s ease, border .25s ease;
+}
+
+.moduleBtn:hover{
+  transform: translateY(-8px);
+  border-color: var(--border-strong);
+}
+
+.moduleBtn h2{
+  margin:18px 0 8px;
+  font-size:26px;
+}
+
+.moduleBtn .desc{
+  color: var(--muted);
+  font-size:14px;
+}
+
+.badge{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.badge span{
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  font-size:12px;
+}
+
+.pillGood{
+  border-color: rgba(49,208,124,.4);
+  background: rgba(49,208,124,.15);
+}
+
+.pillBad{
+  border-color: rgba(255,84,112,.4);
+  background: rgba(255,84,112,.15);
+}
+
+.moduleBtn.locked{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.moduleBtn.locked::after{
+  content:"LOCKED";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:6px;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  border-radius:30px;
+}
+
+/* ================= PANEL ================= */
+
+.panel{
+  margin-top:24px;
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:26px;
+  box-shadow: var(--shadow);
+}
+
+.panelTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.panelModuleName{
+  font-size:30px;
+  font-weight:900;
+}
+
+.panelSub{
+  color: var(--muted);
+  font-size:14px;
+}
+
+/* ================= TABS ================= */
+
+.tabs{
+  display:flex;
+  gap:12px;
+}
+
+.tab{
+  padding:14px 22px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.25);
+  color: var(--muted);
+  cursor:pointer;
+}
+
+.tab.active{
+  color: var(--text);
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(108,140,255,.25), rgba(0,0,0,.25));
+}
+
+/* ================= VIEWS ================= */
+
+.view{ display:none; }
+.view.active{ display:block; }
+
+.btnPrimary{
+  padding:14px 22px;
+  border-radius:18px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border:none;
+  color:white;
+  cursor:pointer;
+  font-size:15px;
+}
+
+/* ================= INFO ================= */
+
+.infoTop{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:18px;
+}
+
+.infoCards{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:18px;
+}
+
+.infoCard{
+  padding:20px;
+  border-radius:26px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.28);
+}
+
+.infoCard h3{
+  margin:0 0 10px;
+  font-size:20px;
+}
+
+.infoCard p{
+  color: var(--muted);
+  line-height:1.6;
+}
+
+/* ================= QUIZ ================= */
+
+.q{
+  margin:18px 0;
+  padding:20px;
+  border-radius:26px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.28);
+}
+
+.q h3{
+  margin:0 0 14px;
+}
+
+.choice{
+  display:flex;
+  gap:14px;
+  padding:16px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.12);
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+.actions{
+  display:flex;
+  gap:14px;
+  margin-top:18px;
+}
+
+.result{
+  margin-top:18px;
+  padding:18px;
+  border-radius:20px;
+  border:1px solid var(--border);
+}
+
+/* ================= AI ================= */
+
+.aiBox{
+  display:flex;
+  gap:14px;
+}
+
+.aiBox input{
+  flex:1;
+  padding:16px 18px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.35);
+  color: var(--text);
+}
+
+.aiAnswer{
+  margin-top:18px;
+  padding:20px;
+  border-radius:26px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.28);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px){
+  .hero{ grid-template-columns:1fr; }
+  .modules{ grid-template-columns:repeat(2,1fr); }
+  .infoCards{ grid-template-columns:1fr; }
+}
+
+@media (max-width: 600px){
+  .modules{ grid-template-columns:1fr; }
+}
+
+/* ===== ONE-PAGE FIT TWEAKS ===== */
+
+/* Reduce overall padding */
+.wrap {
+  padding-top: 20px;
+  padding-bottom: 28px;
+}
+
+/* Make hero more compact */
+.heroLeft,
+.heroRight {
+  padding: 18px;
+}
+
+/* Shrink title slightly */
+.heroLeft h1 {
+  font-size: 28px;
+}
+
+/* Reduce chip height */
+.chip {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* Make module cards shorter */
+.moduleBtn {
+  min-height: 150px;
+  padding: 18px;
+}
+
+.moduleBtn h2 {
+  font-size: 22px;
+}
+
+/* Reduce spacing between sections */
+.grid {
+  gap: 16px;
+}
+
+/* Compact the main panel */
+.panel {
+  padding: 18px;
+  margin-top: 14px;
+}
+
+/* Reduce panel header size */
+.panelModuleName {
+  font-size: 24px;
+}
+
+/* Tighten tabs */
+.tab {
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+/* Make info cards shorter */
+.infoCard {
+  padding: 14px;
+}
+
+.infoCard h3 {
+  font-size: 16px;
+}
+
+/* Reduce AI input height */
+.aiBox input {
+  padding: 12px 14px;
+}
+
+.aiAnswer {
+  padding: 14px;
+}
+
+/* Make quiz cards more compact */
+.q {
+  padding: 14px;
+}
+
+.choice {
+  padding: 12px;
+}
+
+/* Prevent unnecessary scrolling */
+body {
+  overflow-x: hidden;
+}
