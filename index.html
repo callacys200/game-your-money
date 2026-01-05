@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Game your Money</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+
+<script>
+let currentBuilding = null;
+document.querySelectorAll('.building').forEach(building => {
+    building.addEventListener('mouseenter', () => {
+        currentBuilding = building;
+    });
+
+    building.addEventListener('mouseleave', () => {
+        currentBuilding = null;
+    });
+
+    // mobile / fallback click
+    building.addEventListener('click', () => {
+        window.location.href = building.dataset.link;
+    });
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'e' && currentBuilding) {
+        window.location.href = currentBuilding.dataset.link;
+    }
+});
+</script>
+
+<body>
+ <canvas id="gameCanvas"></canvas>
+ <script src="script.js"></script>
+</body>
+</html>
+<div class="building" id="house" data-link="house.html">🏠</div>
+<div class="building" id="office" data-link="office.html">🏢</div>
+<div class="building" id="bank" data-link="bank.html">🏦</div>
+<div class="building" id="atm" data-link="atm.html">💳</div>
+
