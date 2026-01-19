@@ -159,16 +159,10 @@ function drawObjects() {
   });
 }
 
-// Player
-function drawPlayer() {
-  ctx.fillStyle = "black";
-  ctx.fillRect(
-    player.x - player.size / 2,
-    player.y - cameraY,
-    player.size,
-    player.size
-  );
-}
+//Player
+const avatar = new Image();
+avatar.src = "avatar.png";
+
 
 function drawEnterPrompt() {
   if (!nearbyBuilding) return;
