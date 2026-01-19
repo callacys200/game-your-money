@@ -35,6 +35,14 @@ const player = {
   speed: 10
 };
 
+// Player 
+function drawPlayer() { 
+  ctx.fillStyle = "black"; 
+  ctx.fillRect( player.x - player.size / 2, 
+               player.y - cameraY, 
+              player.size, player.size ); 
+}
+
 // Input
 const keys = {};
 document.addEventListener("keydown", e => {
