@@ -50,10 +50,10 @@ let mapDisplayHeight = 0;
 
 // Buildings (percent of ORIGINAL map)
 const buildings = [
-  { name: "Budgeting Basics", img: "house", x: 0.042, y: 0.025, w: 0.23, h: 0.1, link: "budgeting/frontend/"},
-  { name: "Saving & Investing", img: "office", x: 0.69, y: 0.21, w: 0.23, h: 0.1, link: "office/"},
-  { name: "Banking Basics", img: "bank", x: 0.01, y: 0.401, w: 0.3, h: 0.09, link: "bank/"},
-  { name: "Taxes & Income", img: "atm", x: 0.65, y: 0.6, w: 0.37, h: 0.08, link: "atm/"}
+  { name: "Budgeting Basics", img: "house", x: 0.042, y: 0.025, w: 0.23, h: 0.1, link: "http://127.0.0.1:5500"},
+  { name: "Saving & Investing", img: "office", x: 0.69, y: 0.21, w: 0.23, h: 0.1, link: "http://127.0.0.1:5500"},
+  { name: "Banking Basics", img: "bank", x: 0.01, y: 0.401, w: 0.3, h: 0.09, link: "http://127.0.0.1:5500"},
+  { name: "Taxes & Income", img: "atm", x: 0.65, y: 0.6, w: 0.37, h: 0.08, link: "http://127.0.0.1:5500"}
 ];
 
 let nearbyBuilding = null;
