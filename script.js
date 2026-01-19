@@ -159,20 +159,8 @@ function drawObjects() {
   });
 }
 
-//Player
-  const avatar = new Image();
-avatar.src = "avatar.png";
-
-function drawPlayer() {
-  ctx.drawImage(
-    avatar,
-    player.x - player.size / 2,
-    player.y - cameraY,
-    player.size,
-    player.size
-  );
-}
-
+// Player function 
+drawPlayer() { ctx.fillStyle = "black"; ctx.fillRect( player.x - player.size / 2, player.y - cameraY, player.size, player.size ); }
 
 function drawEnterPrompt() {
   if (!nearbyBuilding) return;
