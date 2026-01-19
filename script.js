@@ -160,8 +160,18 @@ function drawObjects() {
 }
 
 //Player
-const avatar = new Image();
+  const avatar = new Image();
 avatar.src = "avatar.png";
+
+function drawPlayer() {
+  ctx.drawImage(
+    avatar,
+    player.x - player.size / 2,
+    player.y - cameraY,
+    player.size,
+    player.size
+  );
+}
 
 
 function drawEnterPrompt() {
